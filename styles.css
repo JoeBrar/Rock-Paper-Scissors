@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+}
+.heading{
+    display:flex;
+    justify-content: center;
+    padding: 10px 0px;
+    background-color: beige;
+}
+.options-heading{
+    font-size:30px;
+    display:flex;
+    justify-content: center;
+    margin-top:50px;
+    text-decoration: underline;
+}
+.main-container{
+    width:50%;
+    margin:auto;
+    min-width: 500px;
+}
+.options{
+    display:flex;
+    justify-content:space-between;
+    margin-top: 60px;
+}
+.options button{
+    padding:25px 0px;
+    font-size: 30px;
+    width:200px;
+}
+.result{
+    display:flex;
+    gap:20px;
+}
+.count{
+    flex:2;
+    margin-top:30px;
+    font-size: 30px;
+}
+.game-text{
+    flex:4;
+    text-align: center;
+    margin-top: 30px;
+}
+.round-details{
+    font-size:25px;
+}
+.win-text{
+    margin-top:20px;
+    font-size:35px;
+}
+.playagain-btn{
+    margin-top:20px;
+    padding:10px 20px;
+    font-size:25px;
+    display:none;
+}

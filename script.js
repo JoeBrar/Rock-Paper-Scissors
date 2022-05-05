@@ -12,6 +12,7 @@ function computerPlay(){
 
 function playRound(playerSelection,compSelection){
     let result;
+    let elem=document.createElement("p");
     if(playerSelection===compSelection){
         result= ("Its a draw ! "+playerSelection+" vs "+compSelection);
     }
@@ -51,34 +52,62 @@ function playRound(playerSelection,compSelection){
     else{
         result= ("Invalid Input");
     }
-    return result;
+    elem.innerText=result;
+    roundDetails.appendChild(elem);
+    document.querySelector(".count :nth-child(2)").innerText=`Player - ${win}`;
+    document.querySelector(".count :nth-child(3)").innerText=`Computer - ${lose}`;
 }
 
-function game(){
+function game(ps){
     let result;
     let compSelection;
-    let playerSelection;
-    let playerSelection2;
-    let compSelection2;
-    while(win+lose<5){
-        compSelection=computerPlay();
-        playerSelection=prompt("Whats your choice? Rock, Paper or Scissors: ");
-        playerSelection2=playerSelection.toLowerCase();
-        compSelection2=compSelection.toLowerCase();
-        result=playRound(playerSelection2,compSelection2);
-        console.log(result);
-    }
-    if(score>=3){
-        console.log("Score : "+score+" / 5\nYou win the game");
-    }
-    else{
-        console.log("Score : "+score+" / 5\nYou lose the game");
+    let playerSelection=ps;
+    let x=1;
+    compSelection=computerPlay();
+    compSelection=compSelection.toLowerCase();
+    playRound(playerSelection,compSelection);
+    if(win===5||lose===5){
+        if(win===5){
+            winText.innerHTML="Congretulations! You Won";
+        }
+        else{
+            winText.innerHTML="Computer Won";
+        }
+        btns.forEach((item)=>{
+            item.disabled=true;
+        })
+        playAgain.style.display="inline-block";
     }
 }
 
 let score=0;
 let win=0;
 let lose=0;
-game();
+let roundDetails=document.querySelector(".round-details")
+let scoreDetails=document.querySelector(".count");
+let winText=document.querySelector(".win-text");
+let playAgain=document.querySelector(".playagain-btn");
+let btns=document.querySelectorAll(".options button");
+btns.forEach((item)=>{
+    item.addEventListener("click",(e)=>{
+        e.preventDefault();
+        game(e.target.value);
+    })
+})
+playAgain.addEventListener("click",(e)=>{
+    e.preventDefault();
+    btns.forEach((item)=>{
+        item.disabled=false;
+    })
+    winText.innerText="";
+    score=0;
+    win=0;
+    lose=0;
+    roundDetails.innerHTML="";
+    document.querySelector(".count :nth-child(2)").innerText=`Player - 0`;
+    document.querySelector(".count :nth-child(3)").innerText=`Computer - 0`;
+    playAgain.style.display="none";
+})
+
 
 
